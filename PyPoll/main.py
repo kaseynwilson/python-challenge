@@ -33,15 +33,23 @@ with open(csvpath, newline="") as csvfile:
         elif candidate not in candidates:
             candidates.append(row[2])
             candidates_dict[candidate] = 1
+    
+    #ouput path for writing to text file
+    output = os.path.join("Analysis", "analysis.txt")
+    txt = open(output, "w")
+
+    #Print to terminal 
     print("Election Results")
     print("-----------------------")        
     print("Total Votes: " + str(count))
     print("-----------------------")
-    
-    #ouput path for writing to text file
-    output = os.path.join("analysis.txt")
-    txt = open(output, "w")
 
+    #Print to text file
+    txt.write("Election Results\n")
+    txt.write("-----------------------\n")        
+    txt.write(f"Total Votes: {count}\n")
+    txt.write(f"-----------------------\n")
+    
     #Find percentage of votes each candidate won:
     #make a call to the dictionary value of votes count for each candidate
     #Then divide by overall count    
@@ -59,18 +67,4 @@ with open(csvpath, newline="") as csvfile:
                 winner = candidate
     #The winner of the election based on popular vote.
     print(f"Winner: {winner}")
-
-
-    #writing to file. need to put above for loop other than f.write statements
-    #output = os.path.join("analysis.txt")
-    #y = open(output, "w") 
-    #y.write(f""
-    analysis_file = os.path.join("Analysis", "analysis.txt")
-    
-    with open(analysis_file, "w") as txt:
-        txt.write("Election Results\n")
-        txt.write("-----------------------\n")        
-        txt.write(f"Total Votes: {count}\n")
-        txt.write(f"-----------------------\n")
-        #txt.write(f"{candidate}: {percentage}% ({candidates_dict[candidate]})\n")
-        txt.write(f"Winner: {winner}")
+    txt.write(f"Winner: {winner}")

@@ -17,8 +17,8 @@ with open(csvpath) as budget_handler:
     profit_losses = 0.0
     profit_list = []
     net_change_list = []
-    change_profit_loss = 0.0
-    #change_profit_loss = next(csvreader[1])
+    #change_profit_loss = 0.0
+    change_profit_loss = next(csvreader[1])
     net_change_profit_loss = 0.0
     dict_month_profit_loss = {}
 
