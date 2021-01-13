@@ -23,9 +23,13 @@ with open(csvpath, newline="") as csvfile:
     for row in csvreader :
         #Add to vote counter to keep tally of total votes
         count = count + 1
+        #set candidate value to current row column 3/index 2
         candidate = row[2]
+        #if candidate is already in the unique candidates list
         if candidate in candidates:
+            #Then add to their vote tally
             candidates_dict[candidate] += 1
+        #otherwise add them to the candidates list and candidates dictionary with an initial vote tally of 1
         elif candidate not in candidates:
             candidates.append(row[2])
             candidates_dict[candidate] = 1
