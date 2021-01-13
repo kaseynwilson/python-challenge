@@ -10,6 +10,8 @@ with open(csvpath) as budget_handler:
     print(csvreader)
     csv_header = next(csvreader)
     print(csv_header)
+    #find next row (first row of data)
+    first_row_data = next(csvreader)
     
     
     #create lists and dictionaries to hold values. 
@@ -17,8 +19,7 @@ with open(csvpath) as budget_handler:
     profit_losses = 0.0
     profit_list = []
     net_change_list = []
-    #change_profit_loss = 0.0
-    change_profit_loss = next(csvreader[1])
+    change_profit_loss = float(first_row_data[1])
     net_change_profit_loss = 0.0
     dict_month_profit_loss = {}
 
@@ -55,7 +56,7 @@ with open(csvpath) as budget_handler:
             max_losses = net_change_list[i]
     
 
-    #Print all results
+    #Print all results to terminal/bash
     print("Financial Analysis")
     print("-------------------------------")
     print("Total Months: " + str(count))
@@ -68,6 +69,7 @@ with open(csvpath) as budget_handler:
     #output path for writing to text file.
     analysis_file = os.path.join("Analysis", "analysis.txt")
     
+    #Write to text file
     with open(analysis_file, "w") as txt:
         txt.write("Financial Analysis\n")
         txt.write("-------------------------------\n")
